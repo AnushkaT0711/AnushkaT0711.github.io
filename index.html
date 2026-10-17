@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Anushka Tadphale | Product Portfolio</title>
+  <meta name="description" content="Product portfolio of Anushka Tadphale: AI, data and enterprise product work.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,400;7..72,600;7..72,700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --paper: #F5F7FA;
+      --surface: #FFFFFF;
+      --ink: #1B2433;
+      --muted: #5B6679;
+      --rule: #D9DEE7;
+      --accent: #0F6B6B;
+      --accent-soft: #E3F1F1;
+      --measure: 42rem;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 5rem; }
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+      font-size: 1.0625rem;
+      line-height: 1.65;
+    }
+    a { color: var(--accent); text-underline-offset: 0.2em; }
+    a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+    h1, h2, h3 {
+      font-family: "Literata", Georgia, "Times New Roman", serif;
+      line-height: 1.2;
+      font-weight: 600;
+      margin: 0;
+    }
+    h1 { font-size: clamp(2.4rem, 6vw, 3.6rem); font-weight: 700; letter-spacing: -0.01em; }
+    h2 { font-size: 2rem; margin-bottom: 1.25rem; }
+    h3 { font-size: 1.25rem; margin: 2rem 0 0.5rem; }
+    p { margin: 0 0 1rem; max-width: var(--measure); }
+    ul { padding-left: 1.2rem; margin: 0 0 1rem; max-width: var(--measure); }
+    li { margin-bottom: 0.5rem; }
+    section { padding: 4.5rem 0; border-top: 1px solid var(--rule); }
+    .wrap { width: min(100% - 2.5rem, 62rem); margin-inline: auto; }
+    .narrow { width: min(100% - 2.5rem, 46rem); margin-inline: auto; }
+
+    /* Top navigation */
+    header.site { position: sticky; top: 0; z-index: 10; background: var(--paper); border-bottom: 1px solid var(--rule); }
+    header.site .wrap { display: flex; justify-content: space-between; align-items: center; min-height: 3.5rem; gap: 1rem; }
+    header.site .brand { font-weight: 600; color: var(--ink); text-decoration: none; }
+    nav ul { display: flex; gap: 1.5rem; list-style: none; padding: 0; margin: 0; }
+    nav a { color: var(--muted); text-decoration: none; font-size: 0.95rem; }
+    nav a:hover { color: var(--accent); }
+
+    /* Hero */
+    .hero { padding: 5rem 0 4rem; border-top: 0; }
+    .hero-grid { display: grid; grid-template-columns: 1fr 12rem; gap: 3rem; align-items: start; }
+    .hero .position { font-family: "Literata", Georgia, serif; font-size: 1.4rem; color: var(--accent); margin: 1.25rem 0 1.5rem; max-width: 30rem; }
+    .hero .intro p:last-child { margin-bottom: 0; }
+    .photo {
+      width: 12rem; aspect-ratio: 1 / 1; object-fit: cover;
+      border-radius: 50%; background: var(--accent-soft); border: 1px solid var(--rule);
+    }
+    .headline-stats { display: flex; gap: 2.5rem; margin-top: 2rem; flex-wrap: wrap; }
+    .headline-stats div { font-size: 0.9rem; color: var(--muted); max-width: 11rem; }
+    .headline-stats strong { display: block; font-family: "Literata", Georgia, serif; font-size: 2rem; color: var(--ink); font-weight: 600; line-height: 1.1; }
+
+    /* Work index */
+    .index { list-style: none; padding: 0; margin: 0; max-width: none; }
+    .index li { border-top: 1px solid var(--rule); margin: 0; }
+    .index li:last-child { border-bottom: 1px solid var(--rule); }
+    .index a { display: grid; grid-template-columns: 14rem 1fr; gap: 1.5rem; padding: 1.25rem 0; color: var(--ink); text-decoration: none; }
+    .index a:hover h3 { color: var(--accent); }
+    .index h3 { margin: 0; font-size: 1.15rem; }
+    .index p { margin: 0; color: var(--muted); font-size: 0.97rem; }
+    .index .pending { color: var(--muted); font-style: italic; }
+    .tag { font-size: 0.85rem; color: var(--muted); }
+
+    /* Case studies */
+    .case { padding: 4.5rem 0; border-top: 1px solid var(--rule); }
+    .case .lede { font-size: 1.2rem; color: var(--muted); margin-bottom: 2rem; max-width: var(--measure); }
+    .case-meta { display: grid; grid-template-columns: 9rem 1fr; gap: 0.5rem 1.5rem; margin: 0 0 2.5rem; font-size: 0.95rem; padding: 1.25rem 0; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
+    .case-meta dt { color: var(--muted); }
+    .case-meta dd { margin: 0; }
+    .case-body { display: grid; grid-template-columns: 9rem 1fr; gap: 0 1.5rem; }
+    .case-body > h3 { grid-column: 2; }
+    .case-body > .sec { grid-column: 2; }
+    .case-body .sec-label { grid-column: 1; grid-row: auto; font-family: "Literata", Georgia, serif; font-weight: 600; color: var(--ink); padding-top: 0.2rem; }
+    .case-section { display: contents; }
+    .case-section > h3 { grid-column: 1; margin-top: 2rem; font-size: 1.05rem; color: var(--accent); }
+    .case-section > div { grid-column: 2; margin-top: 2rem; }
+    .case-section > div > p:last-child, .case-section > div > ul:last-child { margin-bottom: 0; }
+    .decision-split { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+    .decision-split h4 { margin: 0 0 0.5rem; font-size: 0.95rem; color: var(--muted); font-weight: 600; }
+    .outcome-stat { display: flex; gap: 2rem; margin: 1.5rem 0 0; }
+    .outcome-stat div { background: var(--surface); border: 1px solid var(--rule); padding: 1rem 1.25rem; border-radius: 0.25rem; }
+    .outcome-stat strong { display: block; font-family: "Literata", Georgia, serif; font-size: 1.8rem; color: var(--accent); line-height: 1.1; }
+    .outcome-stat span { font-size: 0.9rem; color: var(--muted); }
+    .visual-slot {
+      margin: 2rem 0 0; padding: 2.5rem 1rem; text-align: center; color: var(--muted); font-size: 0.9rem;
+      border: 1px dashed var(--rule); background: var(--surface); border-radius: 0.25rem;
+    }
+
+    /* Skills */
+    .skills dl { display: grid; grid-template-columns: 11rem 1fr; gap: 0.9rem 1.5rem; margin: 0; max-width: var(--measure); }
+    .skills dt { color: var(--muted); font-size: 0.95rem; }
+    .skills dd { margin: 0; }
+
+    /* Contact */
+    .contact dl { display: grid; grid-template-columns: 8rem 1fr; gap: 0.6rem 1.5rem; margin: 0 0 2rem; }
+    .contact dt { color: var(--muted); }
+    .contact dd { margin: 0; }
+    footer { padding: 2rem 0 3rem; border-top: 1px solid var(--rule); color: var(--muted); font-size: 0.9rem; }
+
+    .placeholder { background: #FFF6DB; padding: 0 0.3rem; border-radius: 0.2rem; }
+
+    @media (max-width: 760px) {
+      nav ul { gap: 1rem; }
+      .hero-grid { grid-template-columns: 1fr; }
+      .photo { width: 8rem; order: -1; }
+      .index a, .case-meta, .case-body, .case-section, .skills dl, .contact dl { grid-template-columns: 1fr; }
+      .case-body .sec-label, .case-body > h3, .case-section > h3, .case-section > div { grid-column: 1; }
+      .case-section > h3 { margin-bottom: 0.5rem; }
+      .decision-split { grid-template-columns: 1fr; }
+      .skills dd, .contact dd { margin-bottom: 0.5rem; }
+    }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  </style>
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap">
+    <a class="brand" href="#top">Anushka Tadphale</a>
+    <nav aria-label="Primary">
+      <ul>
+        <li><a href="#work">Work</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <h1>Anushka Tadphale</h1>
+        <p class="position">Aspiring product manager focused on AI, data and enterprise product innovation.</p>
+        <div class="intro">
+          <p>I’m driven by the intersection of technology, business and problem-solving, with a particular interest in building products that turn complex problems into meaningful outcomes.</p>
+          <p>At Bank of New York, I worked across data engineering, regulatory reporting and AI, building scalable frameworks, ETL pipelines and AI-driven applications while partnering with senior stakeholders to improve workflows.</p>
+          <p>Now pursuing management studies, I’m moving from building technology to deciding what to build, why it matters and for whom.</p>
+        </div>
+        <div class="headline-stats">
+          <div><strong>26</strong>user interviews for CoCreate</div>
+          <div><strong>3</strong>product concepts with full case studies</div>
+        </div>
+      </div>
+      <!-- PLACEHOLDER: replace src with your profile photo (e.g. photo.jpg) -->
+      <img class="photo" src="profile-photo.jpg" alt="Anushka Tadphale">
+    </div>
+  </section>
+
+  <!-- Work index -->
+  <section id="work">
+    <div class="wrap">
+      <h2>Work</h2>
+      <ul class="index">
+        <li>
+          <a href="#cocreate">
+            <h3>CoCreate</h3>
+            <p>A trust-first marketplace for micro-creator collaborations. Product discovery, MVP scoping and a concierge pilot. <span class="tag">Software Product Management, ISB</span></p>
+          </a>
+        </li>
+        <li>
+          <a href="#trip-guardian">
+            <h3>Trip Guardian by MMT</h3>
+            <p>An AI-first, collaborative group travel platform concept for MakeMyTrip. <span class="tag">Case competition</span></p>
+          </a>
+        </li>
+        <li>
+          <a href="#money-desk">
+            <h3>Money Desk | Razorpay</h3>
+            <p>A merchant cash-flow and payment-resolution concept that turns payment uncertainty into actions. <span class="tag">Product concept</span></p>
+          </a>
+        </li>
+        <li>
+          <a href="#asapintel">
+            <h3>ASAPIntel</h3>
+            <p class="pending">Case study in progress.</p>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Case study 1: CoCreate -->
+  <article class="case" id="cocreate">
+    <div class="narrow">
+      <h2>CoCreate: a trust-first marketplace for micro-creator collaborations</h2>
+      <p class="lede">CoCreate helps brands and micro-creators discover each other and agree on clear collaboration terms through structured briefs, two-sided trust profiles and rate benchmarks.</p>
+
+      <dl class="case-meta">
+        <dt>Role</dt><dd>Product discovery, customer research, MVP scoping, prototyping, success metrics, strategy</dd>
+        <dt>Team</dt><dd>Five members</dd>
+        <dt>Context</dt><dd>Product concept for a Software Product Management project at ISB</dd>
+      </dl>
+
+      <div class="case-section">
+        <h3>Problem</h3>
+        <div>
+          <p>Micro-creator collaborations often happen over Instagram DMs and WhatsApp, leaving deal terms scattered across conversations. Brands struggle to assess creator reliability, while creators face ambiguity around deliverables, usage rights, budgets and payment terms.</p>
+          <p>In interviews with 26 participants, 17 raised scope or usage-rights concerns and 16 raised trust concerns. These issues create negotiation friction and hesitation to commit.</p>
+        </div>
+      </div>
+
+      <div class="case-section">
+        <h3>Process</h3>
+        <div>
+          <ul>
+            <li><strong>Research and discovery:</strong> Interviewed 26 creators, brands and agencies on pain points, current workflows and willingness to pay.</li>
+            <li><strong>Prioritisation:</strong> Focused on scope ambiguity and counterparty trust, since both directly decide whether a collaboration proceeds.</li>
+            <li><strong>Prototype testing:</strong> Tested with two creators and one brand manager to check comprehension and feature usefulness.</li>
+            <li><strong>MVP design:</strong> Proposed a concierge-led pilot with 3–5 brands and 30–50 creators to validate real behaviour before investing in automation and payments.</li>
+            <li><strong>Success measurement:</strong> Defined Weekly Locked Collaborations as the North Star, with guardrails for disputes, off-platform drop-offs and time to lock.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="case-section">
+        <h3>Decisions</h3>
+        <div>
+          <ul>
+            <li><strong>Locked Brief:</strong> Record deliverables, budget, timeline, usage type and rights duration before work begins.</li>
+            <li><strong>Two-sided Trust Profile:</strong> Show reliability signals for brands and creators before commitment.</li>
+            <li><strong>Rate Benchmark:</strong> Show 25th percentile, median and 75th percentile rates for comparable creators.</li>
+            <li><strong>Concierge MVP:</strong> Manual verification and a limited pilot first, then scale.</li>
+          </ul>
+          <p><strong>Deferred:</strong> Escrow, automated matching, agency tools and subscriptions, until core behaviour was validated. I also avoided penalising users for declining opportunities, which could encourage unwanted commitments.</p>
+        </div>
+      </div>
+
+      <div class="case-section">
+        <h3>Outcome</h3>
+        <div>
+          <div class="outcome-stat">
+            <div><strong>17 of 26</strong><span>interviews raised scope or rights concerns</span></div>
+            <div><strong>16 of 26</strong><span>interviews raised trust concerns</span></div>
+          </div>
+          <p style="margin-top:1.25rem">In a small prototype test, all three participants used the Trust Panel as an initial filter, and the Locked Brief passed the comprehension test. The rate benchmark was only partially validated. The staged roadmap moves from behaviour validation (MVP1) to escrow-backed transactions (MVP2) and agency tools (MVP3). The concierge pilot ran with 4–5 creators and 2–3 brand managers.</p>
+        </div>
+      </div>
+
+      <!-- PLACEHOLDER: add 2–4 visuals (wireframes, journey map, roadmap) -->
+      <div class="visual-slot">Visuals: wireframes, journey map or roadmap go here</div>
+    </div>
+  </article>
+
+  <!-- Case study 2: Trip Guardian -->
+  <article class="case" id="trip-guardian">
+    <div class="narrow">
+      <h2>Trip Guardian by MMT: an AI-first, collaborative travel platform concept</h2>
+      <p class="lede">An AI-integrated group travel planner for MakeMyTrip. AI appears as transparent recommendations rather than a chatbot, with group decision-making and cost-splitting built in, and MMT’s booking record kept as the core.</p>
+
+      <dl class="case-meta">
+        <dt>Role</dt><dd>Sole strategist and designer: research, personas, journey mapping, prioritisation, solution design</dd>
+        <dt>Team</dt><dd>Two (merged with a teammate’s technical draft)</dd>
+        <dt>Context</dt><dd>Case competition on MakeMyTrip’s AI strategy, built from public information</dd>
+      </dl>
+
+      <div class="case-section">
+        <h3>Problem</h3>
+        <div>
+          <p>AI tools are pulling trip inspiration and planning off-platform, which risks turning MMT into a commoditised checkout layer. Yet the hardest moments, including refunds, disruptions, group cost-splitting and trust in recommendations, remain unsolved. Generic AI can inspire but cannot book, protect or manage a trip, because it owns neither inventory nor payments. That gap is MMT’s clearest advantage, but nothing makes it felt across the journey.</p>
+        </div>
+      </div>
+
+      <div class="case-section">
+        <h3>Process</h3>
+        <div>
+          <ul>
+            <li><strong>Research:</strong> Synthesised public data on MMT’s Myra usage and cross-referenced Indian traveller surveys, separating stated AI interest (roughly 60–70%) from actual trust in autonomous booking (roughly 12–15%).</li>
+            <li><strong>Discovery:</strong> Built five personas with deliberately conflicting needs, such as spontaneity versus protection, to stress-test one product.</li>
+            <li><strong>Prioritisation:</strong> Scored features on impact, differentiation and feasibility to separate must-build from later-phase work.</li>
+            <li><strong>Tradeoffs:</strong> Merged a lean MVP approach with a fuller technical spec into a tiered P0/P1/P2 scope, and kept group features in the MVP given their estimated 30–40% share of bookings.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="case-section">
+        <h3>Decisions</h3>
+        <div>
+          <div class="decision-split">
+            <div>
+              <h4>Chose</h4>
+              <ul>
+                <li>A persistent Trip Object as the core record, spanning inspiration, disruption and memory.</li>
+                <li>AI shown as labelled, dismissible reasoning panels inside structured screens. The chatbot is an optional side channel.</li>
+                <li>Group voting, preference synthesis and cost-splitting in the first release.</li>
+                <li>Trust features such as plain-language cancellation terms and approval before any AI-initiated spend.</li>
+              </ul>
+            </div>
+            <div>
+              <h4>Rejected</h4>
+              <ul>
+                <li>A fully autonomous booking agent, which exceeded the trust ceiling found in research.</li>
+                <li>An AI-only entry point replacing the familiar booking flow.</li>
+                <li>One AI experience for all travellers, since persona needs conflicted.</li>
+                <li>A production-grade backend for the prototype, in favour of a reliable mock-state demo.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="case-section">
+        <h3>Outcome</h3>
+        <div>
+          <p>A strategy and design exercise, so there are no live metrics. Deliverables included a segmentation-to-solution narrative, four frameworks (journey map, architecture, wireframes, priority matrix), a build-ready prototype prompt with a design system, and mock data for 21 destinations.</p>
+          <p><strong>Key lesson:</strong> The most valuable move was deciding where AI should not be the interface. Reversing the default “AI as chatbot” assumption, based on the trust-gap data, shaped the rest of the product.</p>
+        </div>
+      </div>
+
+      <!-- PLACEHOLDER: add journey map, architecture or wireframe visuals -->
+      <div class="visual-slot">Visuals: journey map, architecture or wireframes go here</div>
+    </div>
+  </article>
+
+  <!-- Case study 3: Money Desk -->
+  <article class="case" id="money-desk">
+    <div class="narrow">
+      <h2>Money Desk | Razorpay</h2>
+      <p class="lede">Turning payment uncertainty into actionable cash-flow decisions for small merchants.</p>
+
+      <dl class="case-meta">
+        <dt>Role</dt><dd>Product discovery, strategy, UX journey design and AI-assisted prototyping</dd>
+        <dt>Team</dt><dd>Individual-led, with AI tools supporting research synthesis and implementation</dd>
+        <dt>Context</dt><dd>Mobile-first merchant cash-flow and payment-resolution concept for the Razorpay ecosystem</dd>
+      </dl>
+
+      <div class="case-section">
+        <h3>Problem</h3>
+        <div>
+          <p>Small merchants receive payments in staggered amounts but face fixed costs such as wages and supplier advances. Existing workflows show transaction statuses but do not bring together expected cash, overdue collections, in-doubt payments and held settlements into clear next actions. The result is uncertainty about usable cash, time spent chasing buyers and slow resolution of payment issues.</p>
+        </div>
+      </div>
+
+      <div class="case-section">
+        <h3>Process</h3>
+        <div>
+          <ul>
+            <li><strong>Research:</strong> Conversations with merchants about payment pain points and existing workarounds.</li>
+            <li><strong>Discovery:</strong> Synthesised findings into three core uncertainties: money that is late, money whose status is unclear, and money that is held.</li>
+            <li><strong>Scope:</strong> Focused on the cash-flow and resolution workflow rather than a full merchant-management suite.</li>
+            <li><strong>Tradeoffs:</strong> Chose actionable guidance over false certainty, merchant control over automation and trust safeguards over feature breadth.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="case-section">
+        <h3>Decisions</h3>
+        <div>
+          <ul>
+            <li><strong>Cash outlook:</strong> Show Certain, Likely and At Risk amounts rather than a single promised forecast.</li>
+            <li><strong>Seller-controlled collections:</strong> WhatsApp nudges sent from the merchant’s own account, with frequency limits and no autonomous buyer messaging.</li>
+            <li><strong>Duplicate-payment prevention:</strong> Block repeat requests while a transaction is in doubt.</li>
+            <li><strong>Held settlements:</strong> Show a reason category, an evidence checklist, status tracking and an escalation path, with release decisions kept human-led.</li>
+            <li><strong>AI boundaries:</strong> AI assists with failure classification, message drafting and evidence checks, but never releases holds or moves funds.</li>
+            <li><strong>Rejected:</strong> AI repeatedly favoured a COD-to-payment-link feature as the central proposition. I rejected it because it would make Money Desk a payment-feature bundle instead of a product built around cash visibility and resolving uncertainty.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="case-section">
+        <h3>Outcome</h3>
+        <div>
+          <p>An interactive prototype demonstrating the core Identify, Diagnose, Act and Confirm workflow. The proposed North Star is the share of eligible at-risk rupees resolved within seven days, supported by payment conversion, duplicate-payment incidents, hold-resolution time and outlook usability.</p>
+          <p><strong>Key lesson:</strong> A stronger fintech product is not a collection of features. It helps merchants decide while preserving trust and keeping consequential financial decisions under human control.</p>
+        </div>
+      </div>
+
+      <!-- PLACEHOLDER: add prototype screenshots -->
+      <div class="visual-slot">Visuals: prototype screens or the Identify, Diagnose, Act, Confirm flow go here</div>
+    </div>
+  </article>
+
+  <!-- Case study 4: ASAPIntel (placeholder) -->
+  <article class="case" id="asapintel">
+    <div class="narrow">
+      <h2>ASAPIntel</h2>
+      <p class="lede">Case study coming soon.</p>
+      <!-- PLACEHOLDER: add ASAPIntel summary, role, process, outcome and visuals -->
+    </div>
+  </article>
+
+  <!-- Skills -->
+  <section id="skills" class="skills">
+    <div class="narrow">
+      <h2>Skills and toolkit</h2>
+      <dl>
+        <dt>AI and ML</dt><dd>Agentic AI, RAG, MCP, prompt engineering</dd>
+        <dt>Analytics</dt><dd>SQL, Python, Excel</dd>
+        <dt>Data engineering</dt><dd>ETL pipelines, Apache Spark, Airflow, HDFS, Kafka, data modelling, API integration, Git</dd>
+        <dt>Product delivery</dt><dd>Agile, Scrum, MVP, rapid prototyping, A/B testing, RCA</dd>
+        <dt>Tools</dt><dd>JIRA, Confluence</dd>
+      </dl>
+    </div>
+  </section>
+
+  <!-- About and contact -->
+  <section id="about">
+    <div class="narrow">
+      <h2>About</h2>
+      <p>I bring technical depth, structured problem-solving, business curiosity and a collaborative spirit to everything I work on.</p>
+    </div>
+  </section>
+
+  <section id="contact" class="contact">
+    <div class="narrow">
+      <h2>Contact</h2>
+      <p>I’m open to conversations about product management roles in AI, data and enterprise products.</p>
+      <dl>
+        <!-- PLACEHOLDER: replace with your email address -->
+        <dt>Email</dt><dd><a href="mailto:your.email@example.com">[your email]</a></dd>
+        <!-- PLACEHOLDER: replace with your phone number -->
+        <dt>Phone</dt><dd>[your phone number]</dd>
+        <!-- PLACEHOLDER: replace with your LinkedIn profile URL -->
+        <dt>LinkedIn</dt><dd><a href="[LinkedIn URL]" target="_blank" rel="noopener">[LinkedIn URL]</a></dd>
+        <!-- PLACEHOLDER: link to your resume PDF once added to the site -->
+        <dt>Resume</dt><dd><a href="[resume link]">Download resume</a></dd>
+      </dl>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    © <span id="year"></span> Anushka Tadphale
+  </div>
+</footer>
+
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
