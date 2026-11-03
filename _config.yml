@@ -1,0 +1,7 @@
+# GitHub Pages (Jekyll) settings. The site is plain static HTML; these files are not published.
+exclude:
+  - README.md
+  - tools
+  - _source
+  - .github
+  - node_modules
