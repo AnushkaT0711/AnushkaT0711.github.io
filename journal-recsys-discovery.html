@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Understanding RecSys in a totally different perspective | Anushka Tadphale</title>
+  <meta name="description" content="“If it was already on their mental watchlist, they were going to watch it anyway.” A classroom question on prediction accuracy versus incremental discovery.">
+  <meta name="theme-color" content="#fdf7f4">
+  <link rel="canonical" href="https://anushkat0711.github.io/journal-recsys-discovery.html">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Understanding RecSys in a totally different perspective | Anushka Tadphale">
+  <meta property="og:description" content="“If it was already on their mental watchlist, they were going to watch it anyway.” A classroom question on prediction accuracy versus incremental discovery.">
+  <meta property="og:url" content="https://anushkat0711.github.io/journal-recsys-discovery.html">
+  <link rel="icon" type="image/png" sizes="48x48" href="assets/img/favicon-48.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="assets/img/favicon-192.png">
+  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <script>document.documentElement.classList.add("js")</script>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></symbol><symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></symbol><symbol id="i-close" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></symbol><symbol id="i-mail" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></symbol><symbol id="i-linkedin" viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></symbol><symbol id="i-file" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></symbol><symbol id="i-external" viewBox="0 0 24 24"><path d="M15 3h6v6M10 14 21 3M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></symbol><symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol><symbol id="i-x" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></symbol><symbol id="i-layers" viewBox="0 0 24 24"><path d="m12 2 10 5-10 5L2 7z"/><path d="m2 17 10 5 10-5M2 12l10 5 10-5"/></symbol><symbol id="i-route" viewBox="0 0 24 24"><circle cx="6" cy="19" r="3"/><path d="M9 19h8.5a3.5 3.5 0 0 0 0-7h-11a3.5 3.5 0 0 1 0-7H15"/><circle cx="18" cy="5" r="3"/></symbol><symbol id="i-wallet" viewBox="0 0 24 24"><path d="M19 7V4a1 1 0 0 0-1-1H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4h-3a2 2 0 0 0 0 4h3a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1"/><path d="M3 5v14a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-4"/></symbol><symbol id="i-code" viewBox="0 0 24 24"><path d="m16 18 6-6-6-6M8 6l-6 6 6 6"/></symbol><symbol id="i-database" viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14a9 3 0 0 0 18 0V5M3 12a9 3 0 0 0 18 0"/></symbol><symbol id="i-briefcase" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></symbol><symbol id="i-cap" viewBox="0 0 24 24"><path d="M22 10 12 5 2 10l10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5M22 10v6"/></symbol></svg>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="container nav">
+    <a class="logo-slot" href="index.html" aria-label="Anushka Tadphale — home">
+      <img src="assets/img/logo.png" alt="" width="520" height="334">
+      <span class="logo-name">Anushka Tadphale</span>
+    </a>
+    <nav aria-label="Primary" class="nav-wrap" style="display:contents">
+      <ul class="nav-links" id="nav-links"><li><a href="index.html">Home</a></li><li><a href="work.html">Work</a></li><li><a href="about.html">About Me</a></li><li><a href="journal.html" aria-current="page">Journal</a></li><li><a href="contact.html">Contact</a></li><li class="nav-panel-cta"><a class="btn btn-primary" href="contact.html">Let’s Connect <svg class="icon icon-arrow " aria-hidden="true" focusable="false"><use href="#i-arrow"/></svg></a></li></ul>
+    </nav>
+    <a class="btn btn-soft nav-cta" href="contact.html">Let’s Connect <svg class="icon icon-arrow " aria-hidden="true" focusable="false"><use href="#i-arrow"/></svg></a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Open menu"><svg class="icon icon-menu icon-open" aria-hidden="true" focusable="false"><use href="#i-menu"/></svg><svg class="icon icon-close icon-close" aria-hidden="true" focusable="false"><use href="#i-close"/></svg></button>
+  </div>
+</header>
+<main id="main">
+
+  <section class="page-head" style="padding-bottom:0">
+    <div class="narrow">
+      <a class="back-link" href="journal.html"><svg class="icon icon-arrow " aria-hidden="true" focusable="false"><use href="#i-arrow"/></svg> Back to Journal</a>
+      <div class="chips reveal"><span class="chip">Product thinking</span><span class="chip chip-pink">2 min read</span></div>
+      <h1 class="reveal article-title" style="--d:.06s">Understanding RecSys in a totally different perspective</h1>
+    </div>
+  </section>
+  <section class="section" style="padding-top:2rem">
+    <div class="narrow">
+      <article class="article reveal">
+        <p>As an engineer, my initial idea of an “accurate” movie recommendation engine, like the ones powering Netflix or Prime Video, was purely technical: a recommendation system that successfully predicts a title sitting on the user’s dormant mental watchlist. If the algorithm surfaces Inception and the user clicks play, the model gets a high accuracy score, a click-through reward, and a clean engineering win.</p>
+        <p>Then, during one of our classes, our professor hit us with a probing question that completely flipped my perspective:</p>
+        <blockquote>“If it was already on their mental watchlist, they were going to watch it anyway. By serving it to them, you’re wasting a high-value real estate recommendation slot. You’ve optimized for prediction accuracy, but you missed the business objective: incremental discovery.”</blockquote>
+        <p>That moment exposed the gap between system performance and business value in recommendation science.</p>
+        <h2>The deeper economic reality of RecSys</h2>
+        <p><strong>Zero marginal intent vs. incremental lift.</strong> Recommending something a user already intends to watch captures zero incremental viewing hours or platform engagement. True business value comes from persuasion and discovery: nudging a user out of their comfort zone toward a title they wouldn’t have found on their own, thereby expanding their taste profile and deepening platform lock-in.</p>
+        <p><strong>The exploration vs. exploitation trade-off.</strong> Engineering teams are often hyper-focused on exploitation (recommending items similar to past history to maximize short-term click-through rate). But product strategy requires robust exploration (surfacing adjacent genres, international content, or indie gems). If you only exploit, you accelerate catalogue fatigue and trap users in a filter bubble.</p>
+        <p><strong>Opportunity cost of UI real estate.</strong> The homepage of a streaming app is scarce inventory. Every pixel dedicated to a “sure thing” is a missed opportunity to cross-sell higher-margin content, original IP (which reduces licensing dependency), or titles that prevent churn for a micro-segment.</p>
+        <p class="pull">Great engineering builds a model that knows what you like. Great product management builds a model that teaches you what else you’ll love.</p>
+        <p>What’s the best recommendation a streaming algorithm has ever given you, something you never would have clicked on otherwise?</p>
+      </article>
+      <a class="next-project reveal" href="journal-healthcare-entrepreneurship.html"><span><small>Next entry</small><span class="t">Reimagining healthcare; one idea at a time</span></span><svg class="icon icon-arrow " aria-hidden="true" focusable="false"><use href="#i-arrow"/></svg></a>
+    </div>
+  </section>
+</main>
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <p style="margin:0">© <span id="year">2026</span> Anushka Tadphale. Product · Data · AI.</p>
+    <ul><li><a href="index.html">Home</a></li><li><a href="work.html">Work</a></li><li><a href="about.html">About Me</a></li><li><a href="journal.html">Journal</a></li><li><a href="contact.html">Contact</a></li></ul>
+  </div>
+</footer>
+<script src="assets/js/main.js" defer></script>
+</body>
+</html>

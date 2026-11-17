@@ -250,9 +250,5 @@ export const PROJECTS = [
 PROJECTS[0].cardDesc = "A trust-first marketplace where brands and micro-creators agree on clear terms through structured briefs, trust profiles and rate benchmarks.";
 PROJECTS[1].cardDesc = "An FDI intelligence layer that turns “should we invest?” into a structured regulatory verdict in under 5 minutes.";
 
-// Journal: reflections drawn from the project write-ups.
-export const NOTES = [
-  { slug: "asapintel", icon: "layers", from: "ASAPIntel", text: "With no technical moat, the value comes from the curated rules layer, the trust design and the network built around the product. Being clear about what the product cannot decide is part of what makes it credible." },
-  { slug: "trip-guardian", icon: "route", from: "Trip Guardian by MMT", text: "The most valuable move wasn’t adding AI — it was deciding where AI shouldn’t be the interface." },
-  { slug: "money-desk", icon: "wallet", from: "Money Desk | Razorpay", text: "A stronger fintech product is not simply a collection of features. It must help merchants make decisions while preserving trust, avoiding unsupported promises, and keeping consequential financial decisions under appropriate human control." },
-];
+// Journal entries (newest first). Empty until the first entries are added.
+export { NOTES } from "./journal.mjs";

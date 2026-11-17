@@ -24,7 +24,7 @@ for (const page of pages) {
     }
   }
   // External requests that would load assets at runtime
-  for (const m of html.matchAll(/<(?:link|script|img|iframe)[^>]+(?:href|src)="(https?:[^"]+)"/g)) fail(`${page}: external asset ${m[1]}`);
+  for (const m of html.matchAll(/<(?:link(?![^>]*rel="canonical")|script|img|iframe)[^>]+(?:href|src)="(https?:[^"]+)"/g)) fail(`${page}: external asset ${m[1]}`);
   if (!/<h1[\s>]/.test(html)) fail(`${page}: no h1`);
   for (const m of html.matchAll(/<img\b(?![^>]*\balt=)[^>]*>/g)) fail(`${page}: img without alt`);
 }

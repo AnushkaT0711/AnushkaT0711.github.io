@@ -61,7 +61,9 @@ function layout({ file, title, desc, active, body, bodyClass = "" }) {
   <meta property="og:type" content="website">
   <meta property="og:title" content="${esc(full)}">
   <meta property="og:description" content="${esc(desc)}">${og}
-  <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+  <link rel="icon" type="image/png" sizes="48x48" href="assets/img/favicon-48.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="assets/img/favicon-192.png">
+  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
   <link rel="stylesheet" href="assets/css/styles.css">
   <script>document.documentElement.classList.add("js")</script>
 </head>
@@ -314,31 +316,62 @@ function about() {
   return layout({ file: "about.html", title: "About Me", desc: `About ${SITE.name}: data engineer turned aspiring product manager, with experience at Bank of New York in data engineering, regulatory reporting and AI.`, active: "about", body });
 }
 
+const stripTags = (h) => h.replace(/<[^>]+>/g, " ");
+const words = (n) => n.body.map((x) => typeof x === "string" ? x : x.h2 || x.quote || x.pull || x.epigraph || (x.ul || []).join(" ")).map(stripTags).join(" ").split(/\s+/).filter(Boolean).length;
+const readTime = (n) => Math.max(1, Math.round(words(n) / 200)) + " min read";
+
 function journal() {
-  const bySlug = Object.fromEntries(PROJECTS.map((p) => [p.slug, p]));
   const cards = NOTES.map((n, i) => `
         <article class="note-card reveal" style="--d:${(i * 0.08).toFixed(2)}s">
-          <div class="note-top"><span class="note-icon">${icon(n.icon)}</span><span class="chip">Lesson learned</span></div>
-          <blockquote>${esc(n.text)}</blockquote>
-          <p class="card-meta">From ${esc(n.from)}</p>
-          <a class="card-link" href="${n.slug}.html">Read the case study ${icon("arrow")}<span class="sr-only">: ${esc(bySlug[n.slug].title)}</span></a>
+          <div class="note-top"><span class="chip">${esc(n.tag)}</span><span class="card-meta">${readTime(n)}</span></div>
+          <h3>${esc(n.title)}</h3>
+          <p class="card-desc">${esc(n.excerpt)}</p>
+          <a class="card-link" href="journal-${n.slug}.html">Read entry ${icon("arrow")}<span class="sr-only">: ${esc(n.title)}</span></a>
         </article>`).join("");
   const body = `
   <section class="page-head">
     <div class="container">
       <span class="eyebrow">Journal</span>
       <h1 class="reveal">Journal</h1>
-      <p class="lead reveal" style="--d:.08s">Thoughts and lessons from my product journey, starting with what each project taught me.</p>
+      <p class="lead reveal" style="--d:.08s">Reflections on product, AI and strategy: how I think through problems, what I’m learning along the way, and the questions I’m still working through.</p>
     </div>
   </section>
   <section class="section" style="padding-top:1rem">
     <div class="container">
-      <!-- To add an entry later, copy one <article class="note-card"> block below and edit it (see README). -->
       <div class="card-grid two">${cards}</div>
-      <p class="empty-note reveal"><strong>More entries soon.</strong> Longer reflections will be added here.</p>
     </div>
   </section>`;
-  return layout({ file: "journal.html", title: "Journal", desc: "Lessons learned from product projects by Anushka Tadphale.", active: "journal", body });
+  return layout({ file: "journal.html", title: "Journal", desc: "Reflections on product, AI and strategy by Anushka Tadphale.", active: "journal", body });
+}
+
+function journalEntry(n, idx) {
+  const next = NOTES[(idx + 1) % NOTES.length];
+  const parts = n.body.map((x) => {
+    if (typeof x === "string") return `<p>${x}</p>`;
+    if (x.h2) return `<h2>${x.h2}</h2>`;
+    if (x.ul) return `<ul>${x.ul.map((li) => `<li>${li}</li>`).join("")}</ul>`;
+    if (x.quote) return `<blockquote>${x.quote}</blockquote>`;
+    if (x.pull) return `<p class="pull">${x.pull}</p>`;
+    if (x.epigraph) return `<p class="epigraph" lang="hi">${x.epigraph}</p>`;
+    return "";
+  }).join("\n        ");
+  const body = `
+  <section class="page-head" style="padding-bottom:0">
+    <div class="narrow">
+      <a class="back-link" href="journal.html">${icon("arrow")} Back to Journal</a>
+      <div class="chips reveal"><span class="chip">${esc(n.tag)}</span><span class="chip chip-pink">${readTime(n)}</span></div>
+      <h1 class="reveal article-title" style="--d:.06s">${esc(n.title)}</h1>
+    </div>
+  </section>
+  <section class="section" style="padding-top:2rem">
+    <div class="narrow">
+      <article class="article reveal">
+        ${parts}
+      </article>
+      <a class="next-project reveal" href="journal-${next.slug}.html"><span><small>Next entry</small><span class="t">${esc(next.title)}</span></span>${icon("arrow")}</a>
+    </div>
+  </section>`;
+  return layout({ file: `journal-${n.slug}.html`, title: n.title, desc: n.excerpt, active: "journal", body });
 }
 
 function contact() {
@@ -376,8 +409,9 @@ write("journal.html", journal());
 write("contact.html", contact());
 write("404.html", notFound());
 PROJECTS.forEach((p, i) => write(`${p.slug}.html`, project(p, i)));
+NOTES.forEach((n, i) => write(`journal-${n.slug}.html`, journalEntry(n, i)));
 
-const pages = ["", "work.html", "about.html", "journal.html", "contact.html", ...PROJECTS.map((p) => `${p.slug}.html`)];
+const pages = ["", "work.html", "about.html", "journal.html", "contact.html", ...PROJECTS.map((p) => `${p.slug}.html`), ...NOTES.map((n) => `journal-${n.slug}.html`)];
 if (SITE.url) {
   write("sitemap.xml", `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${pages.map((u) => `  <url><loc>${SITE.url}/${u}</loc></url>`).join("\n")}\n</urlset>\n`);
   write("robots.txt", `User-agent: *\nAllow: /\nSitemap: ${SITE.url}/sitemap.xml\n`);

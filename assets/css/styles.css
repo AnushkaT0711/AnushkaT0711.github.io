@@ -363,10 +363,25 @@ ul, ol { margin: 0; padding: 0; }
 .note-card:hover, .note-card:focus-within { transform: translateY(-6px); box-shadow: var(--shadow-md); }
 .note-card .note-top { display: flex; align-items: center; gap: 0.7rem; }
 .note-card .note-icon { width: 2.6rem; height: 2.6rem; border-radius: 12px; display: grid; place-items: center; background: var(--lav-100); color: var(--primary); }
-.note-card:nth-child(2) .note-icon { background: var(--pink); color: #a1425e; }
-.note-card:nth-child(3) .note-icon { background: var(--peach); color: #a45a36; }
 .note-card blockquote { margin: 0; font: 400 1.2rem/1.5 var(--serif); color: var(--plum); }
 .note-card .card-meta { margin-top: auto; padding-top: 0.5rem; }
+.note-card h3 { font-size: 1.4rem; line-height: 1.25; }
+.note-card .card-desc { color: var(--ink-soft); margin: 0; font-size: 0.98rem; line-height: 1.6; }
+.note-card .note-top { justify-content: space-between; }
+.note-card .card-link { margin-top: auto; padding-top: 0.5rem; }
+.article-title { font-size: clamp(2rem, 4.8vw, 3.2rem); margin-top: 1rem; }
+.article { font-size: 1.12rem; line-height: 1.8; }
+.article p { margin-bottom: 1.35rem; }
+.article h2 { font-size: clamp(1.4rem, 2.6vw, 1.8rem); margin: 2.4rem 0 1rem; }
+.article ul { margin: 0 0 1.5rem; padding-left: 0; list-style: none; display: grid; gap: 0.9rem; }
+.article li { position: relative; padding-left: 1.6rem; }
+.article li::before { content: ""; position: absolute; left: 0; top: 0.75em; width: 0.6rem; height: 0.6rem; border-radius: 50%; background: linear-gradient(135deg, var(--lav-400), #f2a3b6); }
+.article strong { color: var(--plum); font-weight: 600; }
+.article a { font-weight: 500; }
+.article blockquote { margin: 1.75rem 0; padding: 1.4rem 1.6rem; border-left: 4px solid var(--lav-400); border-radius: 0 var(--r-md) var(--r-md) 0; background: linear-gradient(135deg, var(--lav-50), #fff); font: 400 1.25rem/1.6 var(--serif); color: var(--plum); }
+.article .pull { margin: 2rem 0; padding: 1.6rem 1.8rem; border-radius: var(--r-md); background: linear-gradient(135deg, var(--lav-100), var(--pink)); font: 400 1.35rem/1.55 var(--serif); color: var(--plum); }
+.article .epigraph { font: 400 clamp(2.4rem, 6vw, 3.4rem)/1.2 var(--serif); color: var(--primary); margin: 0 0 1.5rem; }
+.article + .next-project { margin-top: 3rem; }
 .empty-note { margin-top: 2rem; padding: 1.5rem 1.75rem; border: 1.5px dashed var(--lav-200); border-radius: var(--r-md); color: var(--ink-soft); background: rgba(255, 255, 255, 0.5); }
 .empty-note strong { color: var(--plum); }
 
